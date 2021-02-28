@@ -1,0 +1,50 @@
+---
+title: "Test Plots"
+author: "Samantha Darby"
+date: "2/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#load packages
+require(ggplot2)
+
+#import data
+filename <- file.path("Data", "robotdata3.csv")
+plot_data <- read.csv(file = filename, skip = 1, header = FALSE)
+
+```
+
+## Line plot test
+
+This is a line plot
+
+```{r line_plot, echo=FALSE}
+ggplot(plot_data, aes(x = V1, y = V4, col = V6)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Time", y = "Thing")
+```
+
+## Histogram
+
+This is a histogram
+
+```{r histogram_plot, echo=FALSE}
+ggplot(plot_data, aes(x = V6)) +
+  geom_histogram(binwidth = 100) +
+  labs(x = "whatever V6 is")
+```
+
+## Two Line Plot
+
+```{r two_line_plot, echo=FALSE}
+ggplot(plot_data, aes(x = V1, y = V4)) +
+  geom_point(col = "red") +
+  geom_line(col = "red") +
+  geom_point(aes(x = V1, y = V10), col = "blue") +
+  geom_line(aes(x = V1, y = V10), col = "blue")
+
+```
